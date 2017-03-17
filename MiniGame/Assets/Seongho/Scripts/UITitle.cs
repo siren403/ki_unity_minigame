@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class UITitle : MonoBehaviour
 {
+    SceneTitle mScene = null;
 
+    public void SetScene(SceneTitle scene)
+    {
+        mScene = scene;
+    }
 
     //public void OnClickStartGame(GameManager.SceneState state)
     //{
@@ -22,5 +27,9 @@ public class UITitle : MonoBehaviour
     public void OnClickStartNiddleGame()
     {
         GameManager.GetInst().LoadScene(GameManager.SceneState.NiddleGame);
+    }
+    public void OnClickBuyItem()
+    {
+        mScene.BuyItem();
     }
 }
