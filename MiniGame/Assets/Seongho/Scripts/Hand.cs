@@ -11,6 +11,8 @@ public class Hand : MonoBehaviour
         public Transform mMax;
     }
 
+    private SceneNiddleGame mScene = null;
+
     public List<FingerRange> mFingers = new List<FingerRange>();
 
     private bool mIsNiddleCollision = false;
@@ -21,12 +23,11 @@ public class Hand : MonoBehaviour
             return mIsNiddleCollision;
         }
     }
-    void Start()
+
+    public void SetSCene(SceneNiddleGame scene)
     {
-        
+        mScene = scene;
     }
-
-
     public bool CheckStab(Transform checkTransform)
     {
         Vector2 dir = Vector2.zero;

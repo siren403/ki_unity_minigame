@@ -15,6 +15,7 @@ public class PlayerPrefsInt
     }
     private string mKey = "";
 
+
     public PlayerPrefsInt(string key, int value = 0)
     {
         mKey = key;

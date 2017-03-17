@@ -10,15 +10,19 @@ public class Niddle : MonoBehaviour
         Move = 1,
     }
 
-    [SerializeField]
-    private Hand mHand = null;
+    private SceneNiddleGame mScene = null;
 
     [SerializeField]
     private STATE mState = STATE.Ready;
     [SerializeField]
     private float mDistance = 0.0f;
+    [SerializeField]
+    private Sprite mSpriteNonePick = null;
+    [SerializeField]
+    private Sprite mSpritePick = null;
 
     private Animator mAnimNiddle = null;
+    private SpriteRenderer mSpriterNiddle = null;
 
     private float mCurrentTime = 0;
 
@@ -32,13 +36,11 @@ public class Niddle : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         mAnimNiddle = GetComponentInChildren<Animator>();
-        Vector3 pos = mHand.transform.position;
-        pos.x += Mathf.Cos(0) * mDistance;
-        pos.y += Mathf.Sin(0) * mDistance;
-        this.transform.position = pos;
+        mSpriterNiddle = GetComponentInChildren<SpriteRenderer>();
+        SetNiddlePosition(0);
     }
 
     // Update is called once per frame
@@ -50,13 +52,22 @@ public class Niddle : MonoBehaviour
                 break;
             case STATE.Move:
                 mCurrentTime += Time.deltaTime * 0.7f;
-                Vector3 pos = mHand.transform.position;
-                pos.x += Mathf.Cos(Mathf.PingPong(mCurrentTime, Mathf.PI)) * mDistance;
-                pos.y += Mathf.Sin(Mathf.PingPong(mCurrentTime, Mathf.PI)) * mDistance;
-                this.transform.position = pos;
+                SetNiddlePosition(mCurrentTime);
                 break;
         }
+    }
 
+    private void SetNiddlePosition(float time)
+    {
+        Vector3 pos = mScene.mHand.transform.position;
+        pos.x += Mathf.Cos(Mathf.PingPong(time, Mathf.PI)) * mDistance;
+        pos.y += Mathf.Sin(Mathf.PingPong(time, Mathf.PI)) * mDistance;
+        this.transform.position = pos;
+    }
+
+    public void SetScene(SceneNiddleGame scene)
+    {
+        mScene = scene;
     }
 
     public void DoStab()
@@ -70,11 +81,28 @@ public class Niddle : MonoBehaviour
 
     public void OnInStabComplete()
     {
-        //if(mHand.CheckStab(mAnimNiddle.transform))
-        if(mHand.IsNiddleCollision)
+        if(mScene.mHand.IsNiddleCollision)
         {
-            mAnimNiddle.Stop();
+            //mSpriterNiddle.sprite = mSpritePick;
+            mAnimNiddle.SetTrigger("TrigAniStop");
             mState = STATE.Ready;
+            mScene.OnGameOver();
         }
+        else
+        {
+            mScene.AddSafeCount();
+        }
+    }
+
+    public void SetState(STATE state)
+    {
+        mState = state;
+    }
+    public void OnReset()
+    {
+        mCurrentTime = 0;
+        mIsStabbing = false;
+        mAnimNiddle.SetTrigger("TrigAniReady");
+        SetNiddlePosition(0);
     }
 }
