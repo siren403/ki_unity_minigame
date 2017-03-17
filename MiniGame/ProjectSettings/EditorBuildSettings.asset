@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Seongho/Scenes/SceneNiddleGame.unity
   - enabled: 1
     path: Assets/Seongho/Scenes/SceneTitle.unity
+  - enabled: 1
+    path: Assets/hanu/Cat.unity

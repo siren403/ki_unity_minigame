@@ -5,7 +5,7 @@ using UnityEngine;
 public class CCat : CUnit {
     
 
-    private CScenePlayGame mpScene = null;
+    private CSceneCatPlayGame mpScene = null;
 
     protected bool mIsVisible = false;
     // Use this for initialization
@@ -18,7 +18,7 @@ public class CCat : CUnit {
 		
 	}
 
-   public void SetScene(CScenePlayGame tpScene)
+   public void SetScene(CSceneCatPlayGame tpScene)
     {
         mpScene = tpScene;
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CUI : MonoBehaviour {
 
-    public CScenePlayGame.CATTYPE mBoxType;
-    private CScenePlayGame mpScene = null;
+    public CSceneCatPlayGame.CATTYPE mBoxType;
+    private CSceneCatPlayGame mpScene = null;
   
    
 
@@ -22,14 +22,14 @@ public class CUI : MonoBehaviour {
 		
 	}
 
-    public void SetScene(CScenePlayGame tpScene)
+    public void SetScene(CSceneCatPlayGame tpScene)
     {
         mpScene = tpScene;
     }
 
     public void OnClickBtnHeaven()
     {
-        mBoxType = CScenePlayGame.CATTYPE.HEAVEN;
+        mBoxType = CSceneCatPlayGame.CATTYPE.HEAVEN;
         mCatDestination = mpScene.GetBox(mBoxType);
         InvokeRepeating("MovetoCat", 0.0f, 0.05f);
       
@@ -37,7 +37,7 @@ public class CUI : MonoBehaviour {
     public void OnClickBtnMale()
     {
         Debug.Log("MaleBtn");
-        mBoxType = CScenePlayGame.CATTYPE.MALE;
+        mBoxType = CSceneCatPlayGame.CATTYPE.MALE;
         mCatDestination = mpScene.GetBox(mBoxType);
         InvokeRepeating("MovetoCat", 0.0f, 0.05f);
 
@@ -45,10 +45,12 @@ public class CUI : MonoBehaviour {
     public void OnClickBtnFemale()
     {
         Debug.Log("FemaleBtn");
-        mBoxType = CScenePlayGame.CATTYPE.FEMALE;
+        mBoxType = CSceneCatPlayGame.CATTYPE.FEMALE;
         mCatDestination = mpScene.GetBox(mBoxType);
         InvokeRepeating("MovetoCat", 0.0f, 0.05f);
     }
+
+
 
     public void MovetoCat()
     {
@@ -83,6 +85,21 @@ public class CUI : MonoBehaviour {
             mpScene.GetCurrentCat().transform.Translate(new Vector3(tSpeed * Time.deltaTime,0, 0));
         }
         */
+    }
+
+    public void OnClickGotitle()
+    {
+        GameManager.GetInst().LoadScene(GameManager.SceneState.Title);
+    }
+
+    public void OnClickReturn()
+    {
+        mpScene.SetReSultVisible(false);
+    }
+
+    public void OnClickExitBtn()
+    {
+        mpScene.SetReSultVisible(true);
     }
 
 }

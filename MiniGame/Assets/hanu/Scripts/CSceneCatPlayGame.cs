@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CScenePlayGame : MonoBehaviour {
+public class CSceneCatPlayGame : MonoBehaviour {
     public enum CATTYPE
     {
         HEAVEN = 0,
@@ -19,6 +19,8 @@ public class CScenePlayGame : MonoBehaviour {
     public List<CCat> mCatList = null;
 
     public CUI mpUI = null;
+
+    public GameObject mPanelResult = null;
 
     private bool mIsVisible = false;
     [SerializeField]
@@ -90,6 +92,7 @@ public class CScenePlayGame : MonoBehaviour {
         {
             CHanMgr.GetInstance().AddCount();
             mTxtCount.text = CHanMgr.GetInstance().GetCount().ToString();
+
         }
     }
 
@@ -140,5 +143,10 @@ public class CScenePlayGame : MonoBehaviour {
     public Transform GetBox(CATTYPE tCatType)
     {
         return mBoxList[(int)tCatType];
+    }
+
+    public void SetReSultVisible(bool tIsVisible)
+    {
+        mPanelResult.SetActive(tIsVisible);
     }
 }
