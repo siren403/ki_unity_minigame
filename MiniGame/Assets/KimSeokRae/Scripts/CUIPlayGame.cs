@@ -7,6 +7,7 @@ public class CUIPlayGame : MonoBehaviour {
    // public CPenCil mpPenCilHead = null;
 
     public CScenePlayGame mpScene = null;
+    
 
 
 	// Use this for initialization
@@ -42,5 +43,18 @@ public class CUIPlayGame : MonoBehaviour {
        // mpScene.mpPenCil.AddScore();
         // mpScene.mpPenCil.AddScore(10);
     }
+    public void OnClickPressExit()
+    {
+        //GameManager.GetInst().LoadScene(GameManager.SceneState.Title);
+
+        mpScene.ShowPanel();
+    }
+
+    public void OnClickMainBack()
+    {
+        GameManager.GetInst().LoadScene(GameManager.SceneState.Title);
+    }
+
+
 
 }

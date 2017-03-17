@@ -31,7 +31,7 @@ public class GameManager
         mSceneNames = new Dictionary<SceneState, string>();
         mSceneNames.Add(SceneState.Title, "SceneTitle");
         mSceneNames.Add(SceneState.CatGame, string.Empty);
-        mSceneNames.Add(SceneState.PencilGame, string.Empty);
+        mSceneNames.Add(SceneState.PencilGame, "PenCilGame");
         mSceneNames.Add(SceneState.NiddleGame, "SceneNiddleGame");
 
     }

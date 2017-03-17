@@ -13,10 +13,17 @@ public class CScenePlayGame : MonoBehaviour {
     public int mPencilnum = 0;
 
     public CUIPlayGame mpUi = null;
+
+    public int mPanelMoney = 0;
+    public Text mTxtPanelMoney = null;
+
+
     public int mPencilMoney = 0;
     public Text mTxtMoney = null;
-	// Use this for initialization
-	void Start () {
+
+    public GameObject mPanelExit = null;
+    // Use this for initialization
+    void Start () {
 
 
         /*
@@ -50,6 +57,9 @@ public class CScenePlayGame : MonoBehaviour {
             Appear();
             mPencilMoney++;
             mTxtMoney.text = string.Format("Money : {0}", mPencilMoney);
+
+            
+
         }
 
     }
@@ -60,4 +70,8 @@ public class CScenePlayGame : MonoBehaviour {
         mPencils[mPencilnum].OnTurn(!mPencils[mPencilnum].mIsTurn);
     }
 
+    public void ShowPanel()
+    {
+        mPanelExit.SetActive(true);
+    }
 }
