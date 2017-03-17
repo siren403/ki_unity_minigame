@@ -31,4 +31,9 @@ public class CHanMgr
     {
         return mConut;
     }
+
+    public void ReSetCount()
+    {
+        mConut = 0;
+    }
 }

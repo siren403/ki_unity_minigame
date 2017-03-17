@@ -58,7 +58,7 @@ public class CUI : MonoBehaviour {
 
         tCat = mpScene.GetCurrentCat();
 
-        tCat.transform.position = Vector3.MoveTowards(tCat.transform.position, mCatDestination.position, 0.1f);
+        tCat.transform.position = Vector3.MoveTowards(tCat.transform.position, mCatDestination.position, 0.5f);
         
         if(0.1f > Vector3.Distance(tCat.transform.position,mCatDestination.position))
         {
@@ -89,7 +89,10 @@ public class CUI : MonoBehaviour {
 
     public void OnClickGotitle()
     {
+        GameManager.GetInst().AddGold(CHanMgr.GetInstance().GetCount() * 10);
         GameManager.GetInst().LoadScene(GameManager.SceneState.Title);
+        CHanMgr.GetInstance().ReSetCount();
+
     }
 
     public void OnClickReturn()
@@ -99,7 +102,9 @@ public class CUI : MonoBehaviour {
 
     public void OnClickExitBtn()
     {
+        mpScene.mTxtGold.text = "GOLD: " + (CHanMgr.GetInstance().GetCount()*10).ToString();
         mpScene.SetReSultVisible(true);
+        
     }
 
 }

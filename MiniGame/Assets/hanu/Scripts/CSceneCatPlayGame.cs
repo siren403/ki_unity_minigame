@@ -15,6 +15,8 @@ public class CSceneCatPlayGame : MonoBehaviour {
     public CDeadcat PFDeadcat = null;
 
     public Transform mSpawnPosition = null;
+    public Transform mCatStartPos = null;
+
 
     public List<CCat> mCatList = null;
 
@@ -23,17 +25,20 @@ public class CSceneCatPlayGame : MonoBehaviour {
     public GameObject mPanelResult = null;
 
     private bool mIsVisible = false;
-    [SerializeField]
+ 
     private int mCatNum = 0;
 
     public List<Transform> mBoxList = null;
 
     public Text mTxtCount = null;
 
+    public Text mTxtGold = null;
+    public Text mTxtCountResult = null;
+
     // Use this for initialization
     void Start () {
 
-
+       // mCatStartPos.position = new Vector3(-2.0f, 0.0f, 0.0f);
         mpUI.SetScene(this);
 
         mCatList = new List<CCat>();
@@ -73,16 +78,30 @@ public class CSceneCatPlayGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-  //      MyAppear();
-
 
     }
+
     public void Appear()
     {
+
+        GetCurrentCat().SetIsVisible(false);
+        GetCurrentCat().transform.position = mCatStartPos.position;
         mCatNum = Random.Range(0, 3);
 
         mCatList[mCatNum].SetIsVisible(true);
-        mCatList[mCatNum].transform.position = new Vector3(-2.0f, 0.0f, 0.0f);    
+        //mCatList[mCatNum].transform.position = mCatStartPos.position;    
+        InvokeRepeating("MovetoStartCat", 0.0f, 0.05f);
+    }
+
+    public void MovetoStartCat()
+    {
+        GetCurrentCat().transform.position = Vector3.MoveTowards(GetCurrentCat().transform.position, mCatStartPos.position, 0.8f);
+
+        if(0.1f> Vector3.Distance(GetCurrentCat().transform.position,mCatStartPos.position))
+        {
+            CancelInvoke("MovetoStartCat");
+
+        }
     }
 
     public void CompareBoxtoCat(CATTYPE tBoxType)
@@ -91,8 +110,8 @@ public class CSceneCatPlayGame : MonoBehaviour {
         if(((CATTYPE)mCatNum) == tBoxType)
         {
             CHanMgr.GetInstance().AddCount();
-            mTxtCount.text = CHanMgr.GetInstance().GetCount().ToString();
-
+            mTxtCount.text ="SUCCESS: "+ CHanMgr.GetInstance().GetCount().ToString();
+            mTxtCountResult.text = "SUCCESS: " + CHanMgr.GetInstance().GetCount().ToString() + " X 10";
         }
     }
 
@@ -140,6 +159,7 @@ public class CSceneCatPlayGame : MonoBehaviour {
         }
         */
     }
+
     public Transform GetBox(CATTYPE tCatType)
     {
         return mBoxList[(int)tCatType];
