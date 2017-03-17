@@ -30,8 +30,8 @@ public class GameManager
         mGold = new PlayerPrefsInt("gold");
         mSceneNames = new Dictionary<SceneState, string>();
         mSceneNames.Add(SceneState.Title, "SceneTitle");
+        mSceneNames.Add(SceneState.PencilGame, "PenCilGame");
         mSceneNames.Add(SceneState.CatGame, "Cat");
-        mSceneNames.Add(SceneState.PencilGame, string.Empty);
         mSceneNames.Add(SceneState.NiddleGame, "SceneNiddleGame");
 
     }
