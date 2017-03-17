@@ -1435,7 +1435,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "0\uAC1C\uC644\uC131+0\uC6D0"
+  m_Text: 0
 --- !u!222 &1533957138
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1685,9 +1685,7 @@ MonoBehaviour:
   - {fileID: 1571815568}
   - {fileID: 1681763958}
   mPencilnum: 0
-  mpUi: {fileID: 0}
-  mPanelMoney: 0
-  mTxtPanelMoney: {fileID: 0}
+  mTxtPanelMoney: {fileID: 1533957137}
   mPencilMoney: 0
   mTxtMoney: {fileID: 1660824723}
   mPanelExit: {fileID: 124062381}

@@ -46,7 +46,6 @@ public class CUIPlayGame : MonoBehaviour {
     public void OnClickPressExit()
     {
         //GameManager.GetInst().LoadScene(GameManager.SceneState.Title);
-
         mpScene.ShowPanel();
     }
 

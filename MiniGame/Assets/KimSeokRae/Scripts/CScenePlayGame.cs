@@ -12,9 +12,9 @@ public class CScenePlayGame : MonoBehaviour {
     public List<CPencil> mPencils = null;
     public int mPencilnum = 0;
 
-    public CUIPlayGame mpUi = null;
+   // public CUIPlayGame mpUi = null;
 
-    public int mPanelMoney = 0;
+  //  public int mPanelMoney = 0;
     public Text mTxtPanelMoney = null;
 
 
@@ -58,7 +58,7 @@ public class CScenePlayGame : MonoBehaviour {
             mPencilMoney++;
             mTxtMoney.text = string.Format("Money : {0}", mPencilMoney);
 
-            
+
 
         }
 
@@ -73,5 +73,7 @@ public class CScenePlayGame : MonoBehaviour {
     public void ShowPanel()
     {
         mPanelExit.SetActive(true);
+        GameManager.GetInst().AddGold(mPencilMoney);
+        mTxtPanelMoney.text = string.Format("{0}", mPencilMoney);
     }
 }
