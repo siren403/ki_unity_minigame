@@ -46,7 +46,15 @@ public class GameManager
     {
         return mGold.Value;
     }
-
+    public bool UseGold(int gold)
+    {
+        if (mGold.Value >= gold)
+        {
+            mGold.Value -= gold;
+            return true;
+        }
+        return false;
+    }
     public void LoadScene(SceneState scene)
     {
         string sceneName = string.Empty;
